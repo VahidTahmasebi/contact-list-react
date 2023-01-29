@@ -8,7 +8,7 @@ const Contact = ({ contact }) => {
     <div className='item'>
       <div style={{ display: "flex", alignItems: "center" }}>
         <FaUserCircle className='icon' alt='user' />
-        <Link to={`user/${id}`}>
+        <Link to={`user/${id}`} state={{ contact }}>
           <div className='userInfo'>
             <p>name: {name}</p>
             <p>email: {email}</p>
