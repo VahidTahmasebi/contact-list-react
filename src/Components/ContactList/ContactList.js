@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Contact from "./Contact/Contact";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
@@ -13,7 +14,13 @@ const ContactList = () => {
             <button>Add</button>
           </Link>
         </div>
-        
+        {contacts ? (
+          contacts.map((contact) => {
+            return <Contact key={contact} contact={contact} />;
+          })
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </section>
   );
