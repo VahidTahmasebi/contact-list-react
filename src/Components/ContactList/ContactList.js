@@ -60,13 +60,16 @@ const ContactList = () => {
     <section className='listWrapper'>
       <div className='contactList'>
         <div className='listHeader'>
-          <h2>Contacts</h2>
+          <input
+            type='text'
+            value={searchTerm}
+            onChange={searchHandler}
+            placeholder='contact search'
+            className='search'
+          />
           <Link to='/add'>
             <button>Add</button>
           </Link>
-        </div>
-        <div>
-          <input type='text' value={searchTerm} onChange={searchHandler} />
         </div>
         {contacts ? (
           contacts.map((contact) => {

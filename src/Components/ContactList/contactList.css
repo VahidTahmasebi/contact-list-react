@@ -8,6 +8,7 @@
   align-items: center;
 }
 .listHeader {
+  max-width: 90%;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,6 +16,7 @@
   margin-top: 20px;
 }
 .listHeader button {
+  margin-left: 10px;
   padding: 5px 10px;
   border: 0;
   border-radius: 5px;
@@ -22,6 +24,13 @@
   color: #fff;
   background-color: #6028d9;
   cursor: pointer;
+}
+.search {
+  height: 26px;
+  outline: 0;
+  border: 1px solid #6028d9;
+  border-radius: 2px;
+  padding: 2px 4px;
 }
 .item {
   min-width: 30rem;
