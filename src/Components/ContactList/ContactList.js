@@ -7,12 +7,16 @@ import "./contactList.css";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+  const [allContacts, setAllContacts] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     // Receive data from the server
     const fetchContacts = async () => {
       const { data } = await getContacts();
       setContacts(data);
+      setAllContacts(data);
     };
     try {
       fetchContacts();
@@ -32,6 +36,26 @@ const ContactList = () => {
     }
   };
 
+  // Search handler
+  const searchHandler = (e) => {
+    setSearchTerm(e.target.value);
+    const search = e.target.value;
+
+    // if the input value was not empty
+    // convert the contact subset property to a string
+    if (search !== "") {
+      const filteredContacts = allContacts.filter((c) => {
+        return Object.values(c)
+          .join(" ")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setContacts(filteredContacts);
+    } else {
+      setContacts(allContacts);
+    }
+  };
+
   return (
     <section className='listWrapper'>
       <div className='contactList'>
@@ -40,6 +64,9 @@ const ContactList = () => {
           <Link to='/add'>
             <button>Add</button>
           </Link>
+        </div>
+        <div>
+          <input type='text' value={searchTerm} onChange={searchHandler} />
         </div>
         {contacts ? (
           contacts.map((contact) => {
