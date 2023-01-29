@@ -5,17 +5,17 @@ const Contact = ({ contact }) => {
   const { id, name, email } = contact;
 
   return (
-    <div className='item'>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <FaUserCircle className='icon' alt='user' />
-        <Link to={`user/${id}`} state={{ contact }}>
+    <Link to={`user/${id}`} state={{ contact }} className='Link'>
+      <div className='item'>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaUserCircle className='icon' alt='user' />
           <div className='userInfo'>
             <p>name: {name}</p>
             <p>email: {email}</p>
           </div>
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -7,8 +7,10 @@ const ContactDetail = () => {
   return (
     <div>
       <p>name {name}</p>
-      <p>name {email}</p>
-      <Link to='/'> go to contact list</Link>
+      <p>email {email}</p>
+      <Link to='/' className='Link'>
+        go to contact list
+      </Link>
     </div>
   );
 };

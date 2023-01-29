@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import getContacts from "../../services/getContactsService";
 import Contact from "./Contact/Contact";
+import "./contactList.css";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);

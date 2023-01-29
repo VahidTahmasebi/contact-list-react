@@ -7,6 +7,7 @@ import ContactList from "./Components/ContactList/ContactList";
 function App() {
   return (
     <div className='App'>
+      <h1>Contact App</h1>
       <BrowserRouter>
         <Routes>
           <Route path='/add' element={<AddContact />} />

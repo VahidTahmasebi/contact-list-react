@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import addOneContact from "../../services/addContactService";
-
+import "../form.css";
 const AddContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
 
@@ -33,7 +33,7 @@ const AddContact = () => {
 
   return (
     <form onSubmit={submitForm}>
-      <div className='fromControl'>
+      <div className='formControl'>
         <label>Name</label>
         <input
           type='text'
@@ -42,7 +42,7 @@ const AddContact = () => {
           onChange={changeHandler}
         />
       </div>
-      <div className='fromControl'>
+      <div className='formControl'>
         <label>Email</label>
         <input
           type='text'
@@ -52,6 +52,7 @@ const AddContact = () => {
         />
       </div>
       <button type='submit'>Add Contact</button>
+      <Link to='/' className="Link">go back contact list</Link>
     </form>
   );
 };
