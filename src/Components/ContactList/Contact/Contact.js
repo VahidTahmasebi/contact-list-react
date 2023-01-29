@@ -1,12 +1,12 @@
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Contact = ({ contact }) => {
+const Contact = ({ contact, onDelete }) => {
   const { id, name, email } = contact;
 
   return (
-    <Link to={`user/${id}`} state={{ contact }} className='Link'>
-      <div className='item'>
+    <div className='item'>
+      <Link to={`user/${id}`} state={{ contact }} className='Link'>
         <div style={{ display: "flex", alignItems: "center" }}>
           <FaUserCircle className='icon' alt='user' />
           <div className='userInfo'>
@@ -14,8 +14,11 @@ const Contact = ({ contact }) => {
             <p>email: {email}</p>
           </div>
         </div>
+      </Link>
+      <div>
+        <button onClick={() => onDelete(id)}>Delete</button>
       </div>
-    </Link>
+    </div>
   );
 };
 
