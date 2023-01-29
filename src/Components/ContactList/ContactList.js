@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import getContacts from "../../services/getContactsService";
 import Contact from "./Contact/Contact";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      const { data } = await getContacts();
+      setContacts(data);
+    };
+    try {
+      fetchContacts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <section className='listWrapper'>
