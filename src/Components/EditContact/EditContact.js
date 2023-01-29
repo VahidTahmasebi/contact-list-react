@@ -1,35 +1,43 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import addOneContact from "../../services/addContactService";
-import "../form.css";
-const AddContact = () => {
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import getContacts from "../../services/getContactsService";
+import getOneContact from "../../services/getOneContact";
+import updateContact from "../../services/UpdateContact";
+
+const EditContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
 
   const navigate = useNavigate();
 
-  // change handler for input all
+  const location = useLocation();
+  const { id } = location.state.contact;
+
   const changeHandler = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  // data send the form handler
   const submitForm = async (e) => {
-    // if the from values are empty, display a message
     if (!contact.name || !contact.email) {
       alert("all fields are mandatory");
       return;
     }
     e.preventDefault();
     try {
-      // send data to the server
-      await addOneContact(contact);
-      setContact({ name: "", email: "" });
-      // after clicking, it will transfer to the main page
+      await updateContact(id, contact);
+      await getContacts();
       navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getOneContact(id)
+      .then((result) =>
+        setContact({ name: result.data.name, email: result.data.email }),
+      )
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <form onSubmit={submitForm}>
@@ -51,12 +59,10 @@ const AddContact = () => {
           onChange={changeHandler}
         />
       </div>
-      <button type='submit'>Add Contact</button>
-      <Link to='/' className='Link'>
-        go back contact list
-      </Link>
+      <button type='submit'>update Contact</button>
+      <Link to='/'>go back home</Link>
     </form>
   );
 };
 
-export default AddContact;
+export default EditContact;
